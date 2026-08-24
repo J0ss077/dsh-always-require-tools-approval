@@ -167,7 +167,7 @@ pnpm test       # node --test "tests/**/*.test.ts"
 
 **Can I change the prompt text?** No. The prompt is fixed by design so the gate stays predictable.
 
-**Does one approval let the tool run several times?** No. Each execution prompts again — one approval, one run.
+**Does one approval let the tool run several times?** No. Each execution prompts again.
 
 **Does this block other tools?** No. Only the tools listed in `tools` are gated; every other tool delegates normally.
 
