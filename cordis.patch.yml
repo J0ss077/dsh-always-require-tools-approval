@@ -1,0 +1,6 @@
+# Bundle patch: inserts the approval-gate row when a profile lists this bundle.
+- insert:
+    - id: always-require-tools-approval
+      name: '@j0ss077/dsh-always-require-tools-approval'
+      config:
+        tools: ['bash', 'pwsh']
