@@ -1,6 +1,6 @@
 {
     "name": "@j0ss077/dsh-always-require-tools-approval",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Require a one-shot user approval before configured tools execute",
     "type": "module",
     "main": "lib/index.js",
