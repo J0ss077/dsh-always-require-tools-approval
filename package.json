@@ -1,6 +1,6 @@
 {
     "name": "@j0ss077/dsh-always-require-tools-approval",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Require a one-shot user approval before configured tools execute",
     "type": "module",
     "main": "lib/index.js",
@@ -13,8 +13,7 @@
         "./package.json": "./package.json"
     },
     "files": [
-        "lib/index.js",
-        "lib/index.d.ts",
+        "lib",
         "cordis.patch.yml"
     ],
     "license": "MIT",
@@ -45,9 +44,9 @@
         "typescript": "^5.9.3"
     },
     "scripts": {
-        "prepare": "tsc -p tsconfig.json",
+        "prepare": "tsc -p tsconfig.json && node scripts/fix-dts.mjs",
         "typecheck": "tsc -p tsconfig.test.json",
-        "build": "tsc -p tsconfig.json",
+        "build": "tsc -p tsconfig.json && node scripts/fix-dts.mjs",
         "test": "node --test \"tests/**/*.test.ts\""
     }
 }

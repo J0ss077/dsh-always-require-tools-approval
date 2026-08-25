@@ -7,6 +7,8 @@
         "rootDir": "src",
         "outDir": "lib",
         "declaration": true,
+        "allowImportingTsExtensions": true,
+        "rewriteRelativeImportExtensions": true,
         "strict": true,
         "noImplicitAny": true,
         "skipLibCheck": true,
