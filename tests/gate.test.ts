@@ -52,3 +52,26 @@ test("an empty gated list gates nothing", async () => {
     const decide = harness({ config: { tools: [] } });
     assert.deepEqual(await decide("bash"), { decision: ALLOW, delegated: true });
 });
+
+test("re-reads the watchlist on every call (runtime override applies hot)", async () => {
+    const resolved = { tools: ["bash"] };
+    let delegated = false;
+    const gate = createGate(() => resolved, {});
+    const decide = async (name: string): Promise<{ decision: PreToolDecision; delegated: boolean }> => {
+        delegated = false;
+        const decision = await gate({ name }, async () => {
+            delegated = true;
+            return ALLOW;
+        });
+        return { decision, delegated };
+    };
+
+    // Initially only bash is gated.
+    assert.deepEqual(await decide("bash"), { decision: ASK, delegated: false });
+    assert.deepEqual(await decide("node"), { decision: ALLOW, delegated: true });
+
+    // Mutate the resolved list at runtime; the gate must pick it up immediately.
+    resolved.tools = ["node"];
+    assert.deepEqual(await decide("bash"), { decision: ALLOW, delegated: true });
+    assert.deepEqual(await decide("node"), { decision: ASK, delegated: false });
+});
